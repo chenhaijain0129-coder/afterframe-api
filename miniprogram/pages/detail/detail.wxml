@@ -1,0 +1,22 @@
+<view wx:if="{{archive}}" class="page">
+  <image class="cover" src="{{archive.cover}}" mode="aspectFill"/>
+  <view class="hero">
+    <text class="mono location-line">{{archive.location}}</text>
+    <text class="mono range-line">{{archive.range}}</text>
+    <view>{{archive.title}}</view>
+    <text wx:if="{{archive.description}}">{{archive.description}}</text>
+  </view>
+  <view class="label mono">即时记录 · {{entries.length}}</view>
+  <view wx:for="{{entries}}" wx:key="id" class="entry" data-entry-id="{{item.id}}" bindtap="openAlbum">
+    <text class="time">上传于 {{item.uploadedAt}}</text>
+    <text wx:if="{{item.body}}" class="entry-body">{{item.body}}</text>
+    <view wx:if="{{item.photos.length}}" class="photo-stack">
+      <view wx:if="{{item.photos.length>1}}" class="back-card back-one"/><view wx:if="{{item.photos.length>2}}" class="back-card back-two"/>
+      <swiper class="fold-swiper" circular="{{item.photos.length>1}}" previous-margin="26rpx" next-margin="26rpx" current="{{item.activePhoto}}" data-entry-id="{{item.id}}" bindchange="stackChange" catchtap="openAlbum">
+        <swiper-item wx:for="{{item.photos}}" wx:for-item="photo" wx:key="id"><image class="fold-photo" src="{{photo.url}}" mode="aspectFill"/></swiper-item>
+      </swiper>
+      <view wx:if="{{item.photos.length>1}}" class="photo-count">+{{item.photos.length-1}}</view>
+    </view>
+    <view wx:if="{{item.tags.length}}" class="entry-tags"><text wx:for="{{item.tags}}" wx:key="*this">#{{item}}</text></view>
+  </view>
+</view>

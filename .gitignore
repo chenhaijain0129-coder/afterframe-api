@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.env
+.env.local
+.env.*.local
+!.env.example
+miniprogram/project.private.config.json
+*.log
+.DS_Store

@@ -1,0 +1,5 @@
+{
+  "pages": ["pages/hero/hero", "pages/loading/loading", "pages/home/home", "pages/compose/compose", "pages/archives/archives", "pages/detail/detail", "pages/album/album"],
+  "window": { "navigationBarBackgroundColor": "#070907", "navigationBarTextStyle": "white", "navigationBarTitleText": "余帧 / AFTERFRAME", "backgroundColor": "#070907" },
+  "tabBar": { "color": "#8e9287", "selectedColor": "#dff33b", "backgroundColor": "#070907", "borderStyle": "black", "list": [{ "pagePath": "pages/home/home", "text": "浏览" }, { "pagePath": "pages/compose/compose", "text": "记录" }, { "pagePath": "pages/archives/archives", "text": "档案册" }] }
+}

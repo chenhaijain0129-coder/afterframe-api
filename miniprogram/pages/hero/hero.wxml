@@ -1,0 +1,7 @@
+<view class="hero-page">
+  <view class="flash {{flash?'on':''}}"/>
+  <view class="top mono"><text>AFTERFRAME / 35MM FILM</text><text>FILM READY</text></view>
+  <canvas id="filmCamera" type="2d" class="film-camera" bindtouchstart="startMove" bindtouchmove="moveCamera" bindtouchend="endMove"/>
+  <view class="copy"><text class="mono">拖动机身，对焦此刻</text><view>按下快门<br/>让光显影。</view></view>
+  <view class="shutter" bindtap="capture"><view/></view>
+</view>

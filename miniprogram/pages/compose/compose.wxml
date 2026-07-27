@@ -1,0 +1,16 @@
+<view class="page">
+  <view class="eyebrow mono">即时记录 · 此刻</view>
+  <view class="title">写下此刻的光。</view>
+  <view class="camera" bindtap="choose"><text>＋</text><view>拍照或从相册选择</view><small>最多 9 张照片</small></view>
+  <scroll-view wx:if="{{images.length}}" class="photos" scroll-x="true"><view wx:for="{{images}}" wx:key="*this" class="photo"><image src="{{item}}" mode="aspectFill"/><text data-index="{{index}}" bindtap="remove">×</text></view></scroll-view>
+  <textarea class="body" adjust-position="true" cursor-spacing="240" placeholder="写下此刻的光、气味、声音，或者一句想留住的话。" placeholder-style="color:#777b72;line-height:1.65" data-field="body" bindinput="input" value="{{body}}"/>
+  <view class="label mono">此刻心绪 · 可选</view>
+  <view class="tags"><button wx:for="{{moods}}" wx:key="*this" data-mood="{{item}}" bindtap="selectMood" class="tag {{selectedMood===item?'active':''}}">{{item}}</button></view>
+  <view class="optional" data-key="showMoodNote" bindtap="toggleOptional">{{showMoodNote?'收起心情短句':'＋ 添加一句心情'}}</view>
+  <input wx:if="{{showMoodNote}}" class="input" adjust-position="true" cursor-spacing="160" placeholder="留下一句心情（可选）" placeholder-style="color:#777b72" data-field="moodNote" bindinput="input" value="{{moodNote}}"/>
+  <view class="label mono">为这段记忆标记</view>
+  <view class="tags"><button wx:for="{{tags}}" wx:key="*this" data-tag="{{item}}" bindtap="toggle" class="tag {{tagState[item]?'active':''}}">{{item}}</button></view>
+  <view class="optional" data-key="showCustom" bindtap="toggleOptional">{{showCustom?'收起自定义标签':'＋ 添加自定义标签'}}</view>
+  <input wx:if="{{showCustom}}" class="input" adjust-position="true" cursor-spacing="160" placeholder="以逗号分隔多个标签" placeholder-style="color:#777b72" data-field="custom" bindinput="input" value="{{custom}}"/>
+  <button class="publish action" bindtap="publish">存入档案 →</button>
+</view>

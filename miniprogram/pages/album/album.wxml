@@ -1,0 +1,16 @@
+<view wx:if="{{entry}}" class="page">
+  <view class="album-head"><view class="eyebrow mono">{{entry.uploadedAt}} · {{photos.length}} 帧</view></view>
+  <view class="tip">{{editing?'长按照片拖动排序 · 点「···」删除、设封面或加入情绪':'点击照片预览 · 轻扫照片组可轮换首图'}}</view>
+  <view class="photo-grid" bindtouchmove="moveDrag" bindtouchend="endDrag">
+    <view wx:for="{{photos}}" wx:key="id" class="photo {{dragging&&dragIndex===index?'dragging':''}}" data-index="{{index}}" bindtap="preview" bindlongpress="startDrag">
+      <image src="{{item.url}}" mode="aspectFill"/>
+      <text class="order">{{index+1}}</text><text wx:if="{{editing}}" class="more" data-id="{{item.id}}" catchtap="photoMenu">···</text>
+    </view>
+    <view wx:if="{{editing&&photos.length<9}}" class="photo add-photo" bindtap="choosePhotos"><text>＋</text><small>添加照片</small></view>
+  </view>
+  <view class="edit-link" bindtap="toggleEdit">{{editing?'取消编辑':'编辑这段记录'}}</view>
+  <textarea wx:if="{{editing}}" class="body-editor" value="{{bodyDraft}}" bindinput="inputBody" adjust-position="true" cursor-spacing="180" placeholder="写下这段记忆" placeholder-style="color:#72786e"/>
+  <view wx:elif="{{entry.body}}" class="body">{{entry.body}}</view>
+  <button wx:if="{{editing}}" class="save action" bindtap="saveEntry">保存这段记录</button>
+  <view wx:if="{{editing}}" class="delete-entry" bindtap="deleteEntry">删除这段记录</view>
+</view>

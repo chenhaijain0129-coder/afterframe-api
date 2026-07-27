@@ -1,0 +1,6 @@
+<view class="page">
+  <view class="intro"><view class="kicker mono">给自己的一部 · 私人影像志</view></view><view class="title">把日子存成一卷片。</view>
+  <view class="head"><text class="mono">档案册 · {{archives.length < 10 ? '0' : ''}}{{archives.length}}</text><text class="rename">长按进入编辑</text></view>
+  <scroll-view class="rolls" scroll-x="true"><view wx:for="{{archives}}" wx:key="id" class="roll {{selectedId===item.id?'selected':''}}" data-id="{{item.id}}" bindtap="selectArchive" bindlongpress="editArchive"><image src="{{item.cover}}" mode="aspectFill"/><view class="shade"/><view class="roll-text"><text class="mono">{{item.range}}</text><text>{{item.title}}</text></view></view></scroll-view>
+  <view class="note" wx:if="{{current}}" data-id="{{current.id}}" bindlongpress="editArchive"><text class="mono">{{current.location}}</text><text class="mono range">{{current.range}}</text><view>{{current.title}}</view><text class="muted">从「记录」页随时拍下新的一天</text></view>
+</view>

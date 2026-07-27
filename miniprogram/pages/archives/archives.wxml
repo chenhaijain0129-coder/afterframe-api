@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="eyebrow mono">余帧 · 档案管理</view>
+  <view class="title">整理一段<br/>被记住的路。</view>
+  <scroll-view scroll-x="true" class="selector">
+    <view wx:for="{{archives}}" wx:key="id" data-id="{{item.id}}" bindtap="select" class="archive {{current.id===item.id?'active':''}}">{{item.title}}</view>
+  </scroll-view>
+  <view wx:if="{{current}}" class="form">
+    <view class="label mono">档案名称</view>
+    <input value="{{current.title}}" data-field="title" bindinput="input"/>
+    <view class="label mono">时间范围</view>
+    <view class="date-row">
+      <picker mode="date" value="{{startDate}}" bindchange="date" data-key="start"><view><text class="date-caption">开始日期</text><text>{{startDate}}</text></view></picker>
+      <picker mode="date" value="{{endDate}}" bindchange="date" data-key="end"><view><text class="date-caption">结束日期</text><text>{{endDate}}</text></view></picker>
+    </view>
+    <view class="hint">结束日期不能早于开始日期</view>
+    <view class="label mono">地点</view>
+    <view class="location" bindtap="pickLocation"><view><text>{{current.location||'选择地点'}}</text><text wx:if="{{current.locationDetail.address}}" class="address">{{current.locationDetail.address}}</text></view><text class="pin">地图选择 ↗</text></view>
+    <view class="label mono">档案简介</view>
+    <textarea value="{{current.description}}" adjust-position="true" cursor-spacing="200" placeholder="为这卷档案写下一句简介" data-field="description" bindinput="input"/>
+    <button class="save action" bindtap="save">保存档案内容</button>
+    <view class="delete-archive" bindtap="deleteArchive">让这一卷谢幕</view>
+  </view>
+</view>
